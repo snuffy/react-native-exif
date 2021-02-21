@@ -88,6 +88,17 @@ public class Exif extends ReactContextBaseJavaModule  {
         }
     }
 
+    @ReactMethod
+    public void getSize(String uri, Promise promise) {
+        try {
+            AssetFileDescriptor fileDescriptor = getApplicationContext().getContentResolver().openAssetFileDescriptor(uri , "r");
+            long fileSize = fileDescriptor.getLength();
+            promise.resolve(fileSize);
+        } catch (Exception e) {
+            promise.reject(e.toString());
+        }
+    }
+
     private ExifInterface createExifInterface(String uri) throws Exception {
         if (uri.startsWith("content://")) {
             uri = RealPathUtil.getRealPathFromURI(getReactApplicationContext(), Uri.parse(uri));

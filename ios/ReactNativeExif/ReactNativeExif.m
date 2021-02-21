@@ -11,6 +11,13 @@
 
 RCT_EXPORT_MODULE(ReactNativeExif)
 
+RCT_EXPORT_METHOD(getSize:(NSString *)path resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject) {
+    
+    NSNumber * mySize = [NSNumber numberWithUnsignedLongLong:[[[NSFileManager defaultManager] attributesOfItemAtPath:someFilePath error:nil] fileSize]];
+    resolve(mySize);
+}
+
 RCT_EXPORT_METHOD(getExif:(NSString *)path resolver:(RCTPromiseResolveBlock)resolve
                           rejecter:(RCTPromiseRejectBlock)reject) {
 
