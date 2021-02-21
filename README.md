@@ -21,7 +21,7 @@
 ### getExif
 
 ```javascript
-import Exif from 'react-native-exif'
+import Exif from '@notech/react-native-exif'
 
 // ...
 
@@ -46,9 +46,9 @@ Exif.getExif('assets-library://asset/asset.JPG?id=xxxx&ext=JPG')
 
 Value |
 --- |
-ImageWidth |
-ImageHeight |
-Orientation |
+imageWidth |
+imageHeight |
+orientation |
 originalUri |
 exif|
 

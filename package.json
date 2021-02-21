@@ -1,8 +1,9 @@
 {
     "name": "@notech/react-native-exif",
-    "version": "0.5.1",
+    "version": "0.6.0",
     "description": "Exif reader for react-native support for ios and android",
     "main": "index.js",
+    "typings": "./index.d.ts",
     "author": {
         "name": "xhmm",
         "email": "super.xhmm@gmail.com"

@@ -1,54 +1,53 @@
-import {
-    Platform,
-    NativeModules,
-} from 'react-native';
+import { Platform, NativeModules } from "react-native";
 
 const Exif = {};
 
 function unifyAndroid(exif) {
-    const output = {};
+  const output = {};
 
-    output.ImageWidth = parseInt(exif.ImageWidth);
-    output.ImageHeight = parseInt(exif.ImageLength);
-    output.Orientation = parseInt(exif.Orientation);
-    output.originalUri = exif.originalUri;
-    output.exif = exif;
-    return output;
+  output.imageWidth = parseInt(exif.ImageWidth);
+  output.imageHeight = parseInt(exif.ImageLength);
+  output.orientation = parseInt(exif.Orientation);
+  output.originalUri = exif.originalUri;
+  output.exif = exif;
+  return output;
 }
 
 function unifyIOS(exif) {
-    const output = {};
+  const output = {};
 
-    output.ImageWidth = exif.PixelWidth;
-    output.ImageHeight = exif.PixelHeight;
-    output.Orientation = exif.Orientation;
-    output.originalUri = exif.originalUri;
-    output.exif = exif;
-    return output;
+  output.imageWidth = exif.PixelWidth;
+  output.imageHeight = exif.PixelHeight;
+  output.orientation = exif.Orientation;
+  output.originalUri = exif.originalUri;
+  output.exif = exif;
+  return output;
 }
 
 Exif.getExif = function (uri) {
-    const path = uri.replace('file://', '');
-    return NativeModules.ReactNativeExif.getExif(path).then(result => {
-        if (Platform.OS === 'android') {
-            return unifyAndroid(result);
-        }
-        return unifyIOS(result);
-    });
+  const path = uri.replace("file://", "");
+  return NativeModules.ReactNativeExif.getExif(path).then((result) => {
+    if (Platform.OS === "android") {
+      return unifyAndroid(result);
+    }
+    return unifyIOS(result);
+  });
 };
 
 Exif.getExifWithLocalIdentifier = function (localIdentifier) {
-    return NativeModules.ReactNativeExif.getExifWithLocalIdentifier(localIdentifier).then(result => {
-        if (Platform.OS === 'android') {
-            return unifyAndroid(result);
-        }
-        return unifyIOS(result);
-    });
+  return NativeModules.ReactNativeExif.getExifWithLocalIdentifier(
+    localIdentifier
+  ).then((result) => {
+    if (Platform.OS === "android") {
+      return unifyAndroid(result);
+    }
+    return unifyIOS(result);
+  });
 };
 
 Exif.getLatLong = function (uri) {
-    const path = uri.replace('file://', '');
-    return NativeModules.ReactNativeExif.getLatLong(path);
+  const path = uri.replace("file://", "");
+  return NativeModules.ReactNativeExif.getLatLong(path);
 };
 
 Exif.getSize = function (uri) {
