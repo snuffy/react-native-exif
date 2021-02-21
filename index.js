@@ -52,7 +52,8 @@ Exif.getLatLong = function (uri) {
 };
 
 Exif.getSize = function (uri) {
-    return NativeModules.ReactNativeExif.getSize(uri);
+  const path = uri.replace("file://", "");
+  return NativeModules.ReactNativeExif.getSize(path);
 };
 
 module.exports = Exif;
