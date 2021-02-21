@@ -13,8 +13,8 @@ RCT_EXPORT_MODULE(ReactNativeExif)
 
 RCT_EXPORT_METHOD(getSize:(NSString *)path resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
-    
-    NSNumber * mySize = [NSNumber numberWithUnsignedLongLong:[[[NSFileManager defaultManager] attributesOfItemAtPath:someFilePath error:nil] fileSize]];
+
+    NSNumber * mySize = [NSNumber numberWithUnsignedLongLong:[[[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil] fileSize]];
     resolve(mySize);
 }
 
@@ -119,7 +119,7 @@ RCT_EXPORT_METHOD(getLatLong:(NSString *)path resolver:(RCTPromiseResolveBlock)r
           NSNumber *longitude = [location objectForKey:@"Longitude"];
           NSString *latitudeRef = [location objectForKey:@"LatitudeRef"];
           NSString *longitudeRef = [location objectForKey:@"LongitudeRef"];
-          
+
           if ([@"S" isEqualToString:latitudeRef]) {
               latitude = @(- latitude.doubleValue);
           }
