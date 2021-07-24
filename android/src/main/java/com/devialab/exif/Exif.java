@@ -1,5 +1,6 @@
 package com.devialab.exif;
 
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -91,7 +92,7 @@ public class Exif extends ReactContextBaseJavaModule  {
     @ReactMethod
     public void getSize(String uri, Promise promise) {
         try {
-            AssetFileDescriptor fileDescriptor = getApplicationContext().getContentResolver().openAssetFileDescriptor(uri , "r");
+            AssetFileDescriptor fileDescriptor = getReactApplicationContext().getContentResolver().openAssetFileDescriptor(Uri.parse(uri), "r");
             long fileSize = fileDescriptor.getLength();
             promise.resolve(fileSize);
         } catch (Exception e) {
